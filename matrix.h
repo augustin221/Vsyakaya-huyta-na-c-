@@ -1,31 +1,33 @@
-#ifndef MATRIX_H
-#define MATRIX_H
+#ifndef MANY_H
+#endif MANY_H// !MANY_H
 
-#include "array.h"
-
-class Matrix {
-	friend ostream &operator >> (ostream &, const Matrix &);
-	friend istream &operator << (&operator&, Matrix&);
+class Mnay : public Matrix {
+	friend ostream &operator>>(ostream &, const Many &);
+	friend istream &operator>>(istream &, Many &);
 private:
-	Array *ptr;
+	Matrix *ptr;
 	int size;
+public:
+	Many();
+	Many(int, int, int);
+	Many(Many &);
+	~Many();
 
-public: 
-	Matrix();
-	Matrix(int, int);
-	Matrix(Matrix &matrixToCopy);
-	~Matrix();
+	Matrix &operator[] (int);
+	int getSizeMany() const;
+	int getSizeRow() const {
+		return ptr -> getSizeMat();
+	}
+	int getSizeCol() const {
+		return ptr->getPtr()->getSize();
+	}
+				void getMany();
+				void setMany();
+				const Many &operator = (const Many &);
+				bool operator== (const Many &right) const;
+				Many operator-(const Many &right);
+				Many operator+(const Matrix &right);
+				virtual Many operator+ (const Matrix &right);
+				virtual Many &operator (const Matrix &right);
 
-	int getSize() const;
-	Array *getPtr() const;
-	Array &operator[] (int);
-	void setMatrix();
-	void getMatrix();
-	int *search(const int key) const;
-	Matrix operator+(const Matrix &right);
-	Matrix operator=(const Matrix &right);
-	Matrix operator+=(const Matrix &right);
-	Matrix operator-(const Matrix &right);
-	const Matrix &operator= (const Matrix &right);
-	bool operator== (const Matrix &right) const;
 };
